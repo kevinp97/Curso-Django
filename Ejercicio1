@@ -20,3 +20,12 @@ anterior tiene que aparecer en la tabla la nueva seleccion
 Boton de volver, tiene que mandarnos a la pagina de donde hemos venido
 
 Filtro de ordenar por si se termina rapido.
+
+**********************************************************
+EJ3:
+Crear la app de clientes
+Clase cliente con los mismos datos que persona: nombre, apellidos, dni, email
+
+Definir modelo coche: matricula, marca, color, combustible
+
+¿Como establecer relacion entre cliente y coche? y si borramos cliente que se borren los coches asociados
