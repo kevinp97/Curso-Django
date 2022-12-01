@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Selecciones del Mundial</title>
+</head>
+<body>
+<H1>Selecciones del Mundial Qatar 2022</H1>
+
+<form action="listado-selecciones" method="POST">
+    {%csrf_token%}
+    <fieldset>
+        <legend>Filtro</legend>
+        <label>Buscar: <input type="text" name="continente" list="continentes"/>
+            <datalist id="continentes">
+                {% for continente in listado_continentes %}
+                <option value="{{continente}}"></option>
+                {% endfor %}
+            </datalist>
+        </label>
+    </fieldset>
+    <input type="hidden" name="titulo" value="{{titulo_tabla}}">
+    <input type="submit" value="Filtrar"/>
+</form>
+
+<table border="1" title="{{titulo_tabla}}">
+    <thead>
+    <tr>
+        <th>Selección</th>
+        <th>Continente</th>
+        <th>Num. Mundiales</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for seleccion in listado_selecciones %}
+    <tr>
+        <td>{{seleccion.nombre}}</td>
+        <td>{{seleccion.continente}}</td>
+        <td>{{seleccion.num_mundiales}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+
+</table>
+
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Selecciones mundial</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--  <h1>Selecciones</h1>-->
+<!--<form action="listado_selecciones" method="POST">-->
+<!--    {%csrf_token%}-->
+<!--    <fieldset>-->
+<!--        <legend>Filtro:</legend>-->
+<!--        <label>Buscar: <input type="text" name="continente" list="continente">-->
+<!--            <datalist-->
+<!--                id="continente">-->
+<!--                {% for continente in listado_continentes  %}-->
+<!--                <option value="{{continente}}"></option>-->
+<!--                {% endfor %}-->
+
+<!--            </datalist>-->
+<!--        </label>-->
+
+<!--    </fieldset>-->
+<!--&lt;!&ndash;    hidden sirve porque con get hemos recibido un parametro pero al usar post no podemos volver a llamar a guest-->
+<!--por lo que usamos ese calor con hidden&ndash;&gt;-->
+<!--    <input type="hidden"    name="titulo" value="{{titulo_tabla}}">-->
+<!--    <input type="submit" value="Filtrar" />-->
+
+<!--</form>-->
+
+<!--<table border="1" title="{{titulo_tabla}}">-->
+
+<!--  <tr>-->
+
+<!--    <th>Selección</th>-->
+
+<!--    <th>Continente</th>-->
+
+<!--    <th>Mundiales ganados</th>-->
+
+<!--  </tr>-->
+
+<!--  <tr>-->
+
+<!--    <td>-->
+<!--        {% for seleccion in selecciones  %}-->
+<!--            <p>{{seleccion.seleccion}} </p>-->
+<!--        {% endfor %}-->
+<!--    </td>-->
+
+<!--    <td>-->
+<!--        {% for seleccion in selecciones  %}-->
+<!--            <p>{{seleccion.continente}} </p>-->
+<!--        {% endfor %}-->
+<!--    </td>-->
+
+<!--    <td>-->
+<!--        {% for seleccion in selecciones  %}-->
+<!--            <p>{{seleccion.numero_mundiales_ganados}} </p>-->
+<!--        {% endfor %}-->
+<!--    </td>-->
+
+<!--  </tr>-->
+
+<!--</table>-->
+<!--    <a href="{% url 'inicio' %}">Inicio</a>-->
+<!--    <a href="{% url 'deportes' %}">Actualidad deportiva</a>-->
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,22 @@
+Crear nueva aplicacion deportes:
+Página de /deportes, el titulo y la descripcion tiene que venir dado desde la funcion
+Es decir, sustituir el titulo por el diccionario
+
+**********************************************
+Ejercicio2:
+En actualidad deportiva estableceremos un listado de equipos y vamos a ir viendo:
+Hacer una tabla listado equipo mundial
+
+Link desde actualidad deportiva que lleve a listado equipos mundial
+Y en la pagina de listado equipos mundial que muestre: Seleccion, continente, numero mundiales ganados
+Ponemos un filtro por continente
+
+******************************************************
+EJ2:
+Dentro de selecciones mundial añadir:
+Link añadir seleccion: nos lleva a nueva pagina, nos piden los datos le damos a guardar y cuando volvemos a la pagina
+anterior tiene que aparecer en la tabla la nueva seleccion
+
+Boton de volver, tiene que mandarnos a la pagina de donde hemos venido
+
+Filtro de ordenar por si se termina rapido.

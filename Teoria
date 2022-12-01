@@ -1,0 +1,73 @@
+Creamos una nueva aplicacion webapp y luego tenemos que añadirlas a installed_apps en settings de django.
+Para crear esa aplicaicon: python manage.py startapp nombreapp
+Correr servidor: python manage.py runserver
+
+Para acceder al servidor ponemos en google localhost:8000
+
+"You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+" Esto es porque django por detras necesita guardar informacion en la base de datos y nos dice que los cambios
+que el necesita aplicar no está hecho y necesita aplicarlo para que pueda funcionar de forma correcta.
+Para proceder a que acceda a la base de datos lo primero que hay que hacer es modificar el fichero de
+settings y añadir ahi la conexion a la base de datos.
+Para ver estas migraciones se puede usar el comnado: python .\manage.py showmigrations
+
+Settings -> Databases -> accedemos al link de base de datos -> Copiamos formato, ejemplo;
+Postgres:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mydatabase',
+        'USER': 'mydatabaseuser',
+        'PASSWORD': 'mypassword',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
+En este caso, nos conectamos con mysql y nos quedaria lo siguiente:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'curso_python',
+        'USER': 'root',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+Ahora hay que ver que pasos hay que dar para que nos pase toda esa informacion a la base de datos, pero
+principalmente hay que tener en cuenta que tenemos que tener instalada la libreria de esa base de datos,
+en mysql es mysqlclient. Luego aplicamos los cambios con el comando python .\manage.py migrate y te crea
+muchas tablas en la base de datos.
+Establecemos como source-root al proyecto, click derecho, mark directory as, source-root
+
+
+En el archivo de urls.py es donde indexamos lo que pide el cliente con lo que le vamos a mostrar, un ejemplo
+por defecto es admin/.
+Ponemos esto: path('welcome/', bienvenido) en la que tenemos una url y una funcion que vamos a ejecutar
+La funcion se declara en webapp views.py y ahi definimos la funcion bienvenido.
+
+
+*************** Creacion de plantillas  ******************
+Creamos un directorio en webapp llamado "template" y dentro creamos un archivo html
+Cambiamos en la funcion de bienvenido y usamos render, no hace falta importar nada porque busca directamente en templates
+
+Para pasar datos al template, la forma mas sencilla es usar diccionarios, se pasa el diccionario por la funcion
+y en el html ponemos lo siguiente <div>{{clave_diccionario}}</div> y devuelve el valor.
+
+Si en urls, usamos la propiedad name, podemos redirigir a las paginas modificando el html como:
+<a href="{% url 'deportes'}">Actualidad deportiva</a>
+
+Para crear lista y devolver el listado:
+listado_alumnos = [
+        {"nombre":"Nombre1", "apellidos":"Apellidos1", "dni":"1111A"},
+        {"nombre":"Nombre2", "apellidos":"Apellidos2", "dni":"2222B"},
+        {"nombre":"Nombre3", "apellidos":"Apellidos3", "dni":"3333C"},
+    ]
+
+    contexto = {"listado_alumnos":listado_alumnos}
+
+En html: {% for alumno in listado_alumnos  %} bucle for
+             <p>El alumno {{alumno.nombre}} {{alumno.apellidos}} tiene el dni {{alumno.dni}}</p>
+         {% endfor %}
