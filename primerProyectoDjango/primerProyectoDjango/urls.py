@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from clientes.views import aniadir_clientes
 from deportes.views import deportes, listar_selecciones, aniadir_seleccion
 from webapp.views import bienvenido, despedida, listar_alumnos
 
@@ -27,5 +28,6 @@ urlpatterns = [
     path('alumnos/listado_alumnos/', listar_alumnos, name="listado_alumnos"),
     path('deportes/futbol/listado-selecciones', listar_selecciones, name="listado_selecciones"),
     path('deportes/futbol/aniadir-seleccion', aniadir_seleccion, name="aniadir_seleccion"),
+    path('clientes/nuevo_cliente', aniadir_clientes, name="aniadir_cliente")
 
 ]

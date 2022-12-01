@@ -1,0 +1,64 @@
+<!--MODELO NUEVO-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Añadir cliente</title>
+</head>
+<body>
+  <H1>AÑADIR CLIENTE</H1>
+<!--  el action puede ser la ruta de la url o el name -->
+  <form action="nuevo_cliente" method="post">
+    {%csrf_token%}
+
+<!--    <input type="hidden" name="action" value="guardar">-->
+    <table>
+        {{cliente_form}}
+    </table>
+    <input type="submit" value="Guardar">
+
+
+    <!--Para añadir el mensaje de si se ha registrado correctamente-->
+    <h2 style="color:green">{{mensaje}}</h2>
+</form>
+
+  <a href="{% url 'inicio' %}">Inicio</a>
+</body>
+</html>
+
+
+
+
+
+
+<!--MODELO ANTIGUO-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Añadir cliente</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--  <H1>AÑADIR CLIENTE</H1>-->
+<!--&lt;!&ndash;  el action puede ser la ruta de la url o el name &ndash;&gt;-->
+<!--  <form action="nuevo_cliente" method="post">-->
+<!--    {%csrf_token%}-->
+<!--    <h3>Nombre</h3>-->
+<!--    <input type="text" name="nombre"/>-->
+<!--    <h3>Apellidos</h3>-->
+<!--    <input type="text" name="apellidos"/>-->
+<!--    <h3>DNI</h3>-->
+<!--    <input type="text" name="dni"/>-->
+<!--    <h3>Email</h3>-->
+<!--    <input type="email" name="email"/>-->
+<!--&lt;!&ndash;    <input type="hidden" name="action" value="guardar">&ndash;&gt;-->
+<!--    <input type="submit" value="Guardar">-->
+
+
+<!--    &lt;!&ndash;Para añadir el mensaje de si se ha registrado correctamente&ndash;&gt;-->
+<!--    <h2 style="color:green">{{mensaje}}</h2>-->
+<!--</form>-->
+
+<!--  <a href="{% url 'inicio' %}">Inicio</a>-->
+<!--</body>-->
+<!--</html>-->
