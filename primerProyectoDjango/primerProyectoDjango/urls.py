@@ -16,8 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from clientes.views import aniadir_clientes
-from deportes.views import deportes, listar_selecciones, aniadir_seleccion
+from clientes.views import aniadir_clientes, delete_client_template, delete_client
+from deportes.views import deportes, listar_selecciones, aniadir_seleccion, listar_jugadores, aniadir_jugadores, \
+    eliminar_jugador, editar_jugador, actualizar_jugador
 from webapp.views import bienvenido, despedida, listar_alumnos
 
 urlpatterns = [
@@ -28,6 +29,12 @@ urlpatterns = [
     path('alumnos/listado_alumnos/', listar_alumnos, name="listado_alumnos"),
     path('deportes/futbol/listado-selecciones', listar_selecciones, name="listado_selecciones"),
     path('deportes/futbol/aniadir-seleccion', aniadir_seleccion, name="aniadir_seleccion"),
-    path('clientes/nuevo_cliente', aniadir_clientes, name="aniadir_cliente")
-
+    path('clientes/nuevo_cliente', aniadir_clientes, name="aniadir_cliente"),
+    path('clientes/delete_template', delete_client_template, name="clientes_del_template"),
+    path('clientes/delete/<int:id>', delete_client, name="client_del"),
+    path('deportes/futbol/listado-jugadores', listar_jugadores, name="listado_jugadores"),
+    path('deportes/futbol/listado-jugadores/add-player', aniadir_jugadores, name="aniadir_jugador"),
+    path('deportes/futbol/eliminar-jugador/<int:id>', eliminar_jugador, name="eliminar_jugador"),
+    path('deportes/futbol/listado-jugadores/edit-player/<int:id>', editar_jugador, name="editar_jugador"),
+    path('deportes/futbol/listado-jugadores/update-player/<int:id>', actualizar_jugador, name="actualizar_jugador"),
 ]

@@ -1,4 +1,7 @@
+from django.forms import modelform_factory
 from django.shortcuts import render, get_object_or_404
+
+from deportes.models import Jugadores
 
 
 # Create your views here.
@@ -66,3 +69,56 @@ def listar_selecciones(request):
 
 def aniadir_seleccion(request):
     return render(request, "nueva_seleccion.html")
+
+def listar_jugadores(request):
+    posiciones = ['Portero', 'Defensa centra','Lateral izquierdo','Lateral derecho',
+                            'Centrocampista defensivo', 'Medio centro', 'Media punta', 'Extremo izquierdo',
+                            'Extremo derecho', 'Delantero']
+    nacionalidad = ['España', 'Portugal', 'Alemania','Francia','Italia','Inglaterra','Argentina','Brasil','Uruguay']
+    equipos = ['Real Madrid', 'FC Barcelona', 'Atletico de Madrid','Sevilla','Betis', 'Bayern de Munich', 'BVB',
+               'PSG', 'Juventus', 'Milan', 'Inter Milan', 'Roma', 'Napoles', 'Liverpool', 'Manchester United',
+               'Manchester City', 'Arsenal', 'Chelsea']
+
+    jugadores = Jugadores.objects.all()
+    contexto = {"listado_posicion": posiciones, "listado_nacionalidad": nacionalidad,
+                "listado_equipos":equipos, "jugadores":jugadores}
+
+    return render(request, 'jugadores.html', contexto)
+
+JugadorForm = modelform_factory(Jugadores, exclude=[])
+def aniadir_jugadores(request):
+    mensaje = ''
+    if request.method == 'POST':
+        jugador_form = JugadorForm(request.POST)
+        jugador_form.save()
+        mensaje = 'Jugador registrado en la base de datos'
+    jugador_form = JugadorForm()
+    contexto = {"mensaje":mensaje, "jugador_form":jugador_form}
+    return render(request, 'add_jugador.html', contexto)
+
+def eliminar_jugador(request, id):
+    jugador = Jugadores.objects.get(pk=id)
+    jugador.delete()
+    jugadores = Jugadores.objects.all()
+    contexto = {"jugadores":jugadores}
+    return render(request, 'jugadores.html', contexto)
+
+def editar_jugador(request, id):
+    mensaje = ''
+    if request.method == 'POST':
+        mensaje = 'Jugador actualizado en la base de datos'
+
+    jugador = Jugadores.objects.filter(id=id).first()
+    jugador_form = JugadorForm(instance=jugador)
+    contexto = {"jugador_form": jugador_form, "jugador":jugador, "mensaje":mensaje}
+    return render(request, "edit_jugador.html", contexto)
+
+def actualizar_jugador(request, id):
+    jugador = Jugadores.objects.get(pk=id)
+    #obtener los datos de la edicion del jugador y hacer match con el jugador de la base de datos
+    jugador_form = JugadorForm(request.POST, instance=jugador)
+    if jugador_form.is_valid():
+        jugador_form.save()
+    jugadores = Jugadores.objects.all()
+    contexto = {"jugadores":jugadores}
+    return render(request,"jugadores.html",contexto)

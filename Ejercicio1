@@ -29,3 +29,19 @@ Clase cliente con los mismos datos que persona: nombre, apellidos, dni, email
 Definir modelo coche: matricula, marca, color, combustible
 
 ¿Como establecer relacion entre cliente y coche? y si borramos cliente que se borren los coches asociados
+
+****************************************************************
+EJ4:
+Desde la pagina de bienvenida vamos a actualidad deportiva y creamos link que sea "Jugadores"
+En la parte de arriba de la pantalla: Filtrar jugadores por posicion y nacionalidad y/o equipo
+En la parte de abajo: Tabla con los jugadores:
+Nombre|Equipo|Edad|Nacionalidad|Posicion|(opciones)
+en las opciones habran 2 botones que son eliminar y actualizar.
+Abajo hay un boton de añadir nuevo jugador
+Cuando se le da a nuevo se abre una ventana nueva donde aparece un formulario para rellenar junto a un boton de guardar
+y se guarda
+Si se da a actualizar, se abre de nuevo el registro en otra ventana y precarga los datos del jugar para que se puedan
+modificar y cambiar los datos.
+Eliminar: elimina del tiron al jugador de la base de datos
+
+Si se pincha en nombre en la tabla se ordenan los jugadores, usar orderby de django.

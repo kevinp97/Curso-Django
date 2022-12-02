@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<H1>AÑADIR JUGADOR</H1>
+<!--  el action puede ser la ruta de la url o el name -->
+  <form action="{% url 'aniadir_jugador' %}" method="post">
+    {%csrf_token%}
+
+<!--    <input type="hidden" name="action" value="guardar">-->
+    <table>
+        {{jugador_form}}
+    </table>
+    <input type="submit" value="Registrar">
+
+
+    <!--Para añadir el mensaje de si se ha registrado correctamente-->
+    <h2 style="color:green">{{mensaje}}</h2>
+  </form>
+    <li><a href="{% url 'listado_jugadores' %}">Atrás</a></li>
+</body>
+</html>

@@ -1,5 +1,5 @@
 from django.forms import modelform_factory
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from clientes.models import Cliente
 
@@ -19,6 +19,23 @@ def aniadir_clientes(request):
 
     contexto = {"mensaje": mensaje, "cliente_form":cliente_form}
     return render(request, "clientes.html", contexto)
+
+def delete_client_template(request):
+    if request.method == "POST":
+        id = request.POST['id_cliente']
+        # cliente = Cliente.objects.get(pk=id_cliente) #devuelve el cliente que tiene ese identificador
+        cliente = get_object_or_404(Cliente, pk=id) #para que duvuelva un error si no existe el id
+        cliente.delete()
+
+    print('Cliente borrado desde formulario')
+    return render(request, 'delete_client.html')
+
+def delete_client(request,id):
+    print(f'{id}')
+    cliente = get_object_or_404(Cliente, pk=id)
+    cliente.delete()
+    print('Cliente borrado desde url')
+    return render(request, 'delete_client.html')
 
 # Modo recogiendo datos
 # def aniadir_clientes(request):

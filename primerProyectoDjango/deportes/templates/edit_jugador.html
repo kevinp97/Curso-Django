@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<H1>ACTUALIZACIÓN DE JUGADOR</H1>
+<form action="{% url 'actualizar_jugador' jugador.id %}" method="post">
+    {%csrf_token%}
+    <table>
+        {{jugador_form}}
+    </table>
+    <input type="submit" value="Actualizar">
+    <h2 style="color:green">{{mensaje}}</h2>
+</form>
+
+    <a href="{% url 'listado_jugadores' %}">Atrás</a>
+</body>
+</html>

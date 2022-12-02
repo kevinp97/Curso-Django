@@ -9,9 +9,10 @@
     <div>{{mensaje1}}</div>
     <div>{{mensaje2}}</div>
     <ul>
-        <a href="{% url 'deportes' %}">Actualidad deportiva</a>
-        <a href="{% url 'listado_alumnos' %}">Listado alumnos</a>
-        <a href="{% url 'aniadir_cliente' %}">Añadir clientes</a>
+        <li><a href="{% url 'deportes' %}">Actualidad deportiva</a></li>
+        <li><a href="{% url 'listado_alumnos' %}">Listado alumnos</a></li>
+        <li><a href="{% url 'aniadir_cliente' %}">Añadir clientes</a></li>
+        <li><a href="{% url 'clientes_del_template' %}">Borrar clientes</a></li>
     </ul>
 
 </body>

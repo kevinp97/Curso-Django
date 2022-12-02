@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'clientes_del_template' %}" method="post">
+    {%csrf_token%}
+    Id Cliente a eliminar: <input type="text" name="id_cliente">
+    <input type="submit" name="Eliminar">
+
+</form>
+<!--para borrar a un cliente haciendo click en una url-->
+    <a href="delete/7">Borrar cliente</a>
+    <a href="{% url 'inicio' %}">Inicio</a>
+</body>
+</html>
