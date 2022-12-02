@@ -79,7 +79,8 @@ def listar_jugadores(request):
                'PSG', 'Juventus', 'Milan', 'Inter Milan', 'Roma', 'Napoles', 'Liverpool', 'Manchester United',
                'Manchester City', 'Arsenal', 'Chelsea']
 
-    jugadores = Jugadores.objects.all()
+    jugadores = Jugadores.objects.all().order_by('nombre')
+
     if request.method == 'POST':
         accion = request.POST.get('action', '')
 
@@ -98,6 +99,9 @@ def listar_jugadores(request):
 
             if not equipo_filtro == '':
                 jugadores = jugadores.filter(equipo=equipo_filtro)
+
+            if posicion_filtro == '' and nacionalidad_filtro == '' and equipo_filtro == '':
+                jugadores = Jugadores.objects.all()
 
     contexto = {"listado_posicion": posiciones, "listado_nacionalidad": nacionalidad,
                 "listado_equipos": equipos, "jugadores": jugadores}
