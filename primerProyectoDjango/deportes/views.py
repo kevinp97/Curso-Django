@@ -23,7 +23,7 @@ def listar_selecciones(request):
 
     #Miro si tengo datos en la sesion
     listado_seleccion = request.session.get("listado_selecciones", None)
-
+    print(f'LISTADO SELECCION REQUEST;  {listado_seleccion}')
     #Si en la sesion no hay nada
     if listado_seleccion == None:
         request.session['listado_selecciones'] = lista_selecciones
@@ -80,8 +80,27 @@ def listar_jugadores(request):
                'Manchester City', 'Arsenal', 'Chelsea']
 
     jugadores = Jugadores.objects.all()
+    if request.method == 'POST':
+        accion = request.POST.get('action', '')
+
+        #filtro múltiple en el que comprobamos que los filtros no esten vacios y si lo estan pasar de ellos
+        if accion == "filtrar":
+            posicion_filtro = request.POST['posicion']
+            nacionalidad_filtro = request.POST['nacionalidad']
+            equipo_filtro = request.POST['equipo']
+            jugadores = Jugadores.objects
+
+            if not posicion_filtro == '':
+                jugadores = jugadores.filter(posicion=posicion_filtro)
+
+            if not nacionalidad_filtro == '':
+                jugadores = jugadores.filter(nacionalidad=nacionalidad_filtro)
+
+            if not equipo_filtro == '':
+                jugadores = jugadores.filter(equipo=equipo_filtro)
+
     contexto = {"listado_posicion": posiciones, "listado_nacionalidad": nacionalidad,
-                "listado_equipos":equipos, "jugadores":jugadores}
+                "listado_equipos": equipos, "jugadores": jugadores}
 
     return render(request, 'jugadores.html', contexto)
 

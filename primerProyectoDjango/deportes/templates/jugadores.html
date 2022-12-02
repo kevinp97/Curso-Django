@@ -7,11 +7,11 @@
 <body>
 <H1>Jugadores</H1>
 
-<form action="listado-selecciones" method="POST">
+<form action="listado-jugadores" method="POST">
     {%csrf_token%}
     <fieldset>
         <legend>Filtro</legend>
-        <label>Posición: <input type="text" name="Posicion" list="posicion"/>
+        <label>Posición: <input type="text" name="posicion" list="posicion"/>
             <datalist id="posicion">
                 {% for posicion in listado_posicion %}
                 <option value="{{posicion}}"></option>
@@ -19,7 +19,7 @@
             </datalist>
         </label>
 
-        <label>Nacionalidad: <input type="text" name="Nacionalidad" list="nacionalidad"/>
+        <label>Nacionalidad: <input type="text" name="nacionalidad" list="nacionalidad"/>
             <datalist id="nacionalidad">
                 {% for nacionalidad in listado_nacionalidad %}
                 <option value="{{nacionalidad}}"></option>
@@ -27,7 +27,7 @@
             </datalist>
         </label>
 
-        <label>Equipo: <input type="text" name="Equipo" list="equipo"/>
+        <label>Equipo: <input type="text" name="equipo" list="equipo"/>
             <datalist id="equipo">
                 {% for equipo in listado_equipos %}
                 <option value="{{equipo}}"></option>
@@ -69,7 +69,6 @@
     <input type="hidden" name="titulo" value="{{titulo_tabla}}">
     <input type="hidden" name="action" value="filtrar">
     <input type="submit" value="Filtrar"/>
-
 </form>
     <li><a href="{% url 'aniadir_jugador' %}">Añadir jugador</a></li>
     <li><a href="{% url 'deportes' %}">Atrás</a></li>
